@@ -10,12 +10,13 @@ Functions
 --------------------------------------------------------------------------
 """
 def refreshWindow():
-    pyautogui.moveTo(900,900)
-    pyautogui.rightClick()
-    pyautogui.press("down")
-    pyautogui.press("down")
-    pyautogui.press("down")
-    pyautogui.press("enter")
+    pyautogui.hotkey("ctrl", "R")
+    # pyautogui.moveTo(900,900)
+    # pyautogui.rightClick()
+    # pyautogui.press("down")
+    # pyautogui.press("down")
+    # pyautogui.press("down")
+    # pyautogui.press("enter")
 
 def clickOnStart():
     pyautogui.press("win")
@@ -23,6 +24,7 @@ def clickOnStart():
 
 def OpenApp(appName):
     # refreshWindow()
+    MinimizeCurrentScreen()
     clickOnStart()
     pyautogui.typewrite(appName)
     pyautogui.press("enter")
@@ -33,6 +35,7 @@ def OpenApp(appName):
     # engine.setProperty('voice', voices[0].id)
     # pyttsx3.speak((appName+" has been opened"))
     Maximize()
+    time.sleep(1) # Time to perform other background tasks 
     return
 
 def executeChrome(textToSearch):
@@ -42,9 +45,16 @@ def executeChrome(textToSearch):
     pyautogui.press("enter")
 
 def executeYouTube():
-    textToSearch = input("Enter the text to serch in youtube: ")
+    textToSearch = input("Enter the text to serch in Youtube: ")
     MinimizeCurrentScreen()
-    executeChrome(("https://www.youtube.com/results?search_query="+textToSearch))
+    executeChrome("https://www.youtube.com/results?search_query="+textToSearch)
+
+def executeWikipedia():
+    articleToSearch = input("Enter the article to serch in Wikipedia: ")
+    MinimizeCurrentScreen()
+    executeChrome("https://en.m.wikipedia.org/wiki/"+articleToSearch)
+
+
 
 def openAndExecuteCommand():
     cmd = input("Enter the command you want execute :")
@@ -55,10 +65,11 @@ def openAndExecuteCommand():
 
 # @deprecated
 def MinimizeCurrentScreen():
-    pyautogui.moveTo(1777,27)
-    # pyautogui.hotkey("win", "down")
-    pyautogui.click()
-    return
+    pyautogui.hotkey("win", "m")
+    # pyautogui.moveTo(1777,27)
+    # # pyautogui.hotkey("win", "down")
+    # pyautogui.click()
+    
 
 def Maximize():
     time.sleep(0.5)
@@ -66,7 +77,7 @@ def Maximize():
     return
 
 if __name__ == "__main__":
-    app_name = input("Enter the app name: ")
+    app_name = (input("Enter the app name: ")).lower()
 
     if "command" in app_name or "power" in app_name:
         openAndExecuteCommand()
@@ -75,6 +86,8 @@ if __name__ == "__main__":
         executeChrome(textToSearch)
     elif "youtube" in app_name or "you tube" in app_name:
         executeYouTube()
+    elif "wiki" in app_name:
+        executeWikipedia()
     else:
         # MinimizeCurrentScreen()
         OpenApp(app_name)
