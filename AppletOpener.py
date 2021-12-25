@@ -24,6 +24,7 @@ def clickOnStart():
 
 def OpenApp(appName):
     # refreshWindow()
+    MinimizeCurrentScreen()
     clickOnStart()
     pyautogui.typewrite(appName)
     pyautogui.press("enter")
@@ -34,6 +35,7 @@ def OpenApp(appName):
     # engine.setProperty('voice', voices[0].id)
     # pyttsx3.speak((appName+" has been opened"))
     Maximize()
+    time.sleep(1) # Time to perform other background tasks 
     return
 
 def executeChrome(textToSearch):
@@ -63,7 +65,7 @@ def openAndExecuteCommand():
 
 # @deprecated
 def MinimizeCurrentScreen():
-    pyautogui.hotkey("win", "M")
+    pyautogui.hotkey("win", "m")
     # pyautogui.moveTo(1777,27)
     # # pyautogui.hotkey("win", "down")
     # pyautogui.click()
@@ -75,7 +77,7 @@ def Maximize():
     return
 
 if __name__ == "__main__":
-    app_name = input("Enter the app name: ")
+    app_name = (input("Enter the app name: ")).lower()
 
     if "command" in app_name or "power" in app_name:
         openAndExecuteCommand()
