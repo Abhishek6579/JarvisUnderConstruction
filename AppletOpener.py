@@ -43,9 +43,16 @@ def executeChrome(textToSearch):
     pyautogui.press("enter")
 
 def executeYouTube():
-    textToSearch = input("Enter the text to serch in youtube: ")
+    textToSearch = input("Enter the text to serch in Youtube: ")
     MinimizeCurrentScreen()
-    executeChrome(("https://www.youtube.com/results?search_query="+textToSearch))
+    executeChrome("https://www.youtube.com/results?search_query="+textToSearch)
+
+def executeWikipedia():
+    articleToSearch = input("Enter the article to serch in Wikipedia: ")
+    MinimizeCurrentScreen()
+    executeChrome("https://en.m.wikipedia.org/wiki/"+articleToSearch)
+
+
 
 def openAndExecuteCommand():
     cmd = input("Enter the command you want execute :")
@@ -77,6 +84,8 @@ if __name__ == "__main__":
         executeChrome(textToSearch)
     elif "youtube" in app_name or "you tube" in app_name:
         executeYouTube()
+    elif "wiki" in app_name:
+        executeWikipedia()
     else:
         # MinimizeCurrentScreen()
         OpenApp(app_name)
