@@ -56,10 +56,11 @@ def openAndExecuteCommand():
 
 # @deprecated
 def MinimizeCurrentScreen():
-    pyautogui.moveTo(1777,27)
-    # pyautogui.hotkey("win", "down")
-    pyautogui.click()
-    return
+    pyautogui.hotkey("win", "M")
+    # pyautogui.moveTo(1777,27)
+    # # pyautogui.hotkey("win", "down")
+    # pyautogui.click()
+    
 
 def Maximize():
     time.sleep(0.5)
