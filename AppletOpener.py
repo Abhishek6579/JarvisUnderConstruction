@@ -10,12 +10,13 @@ Functions
 --------------------------------------------------------------------------
 """
 def refreshWindow():
-    pyautogui.moveTo(900,900)
-    pyautogui.rightClick()
-    pyautogui.press("down")
-    pyautogui.press("down")
-    pyautogui.press("down")
-    pyautogui.press("enter")
+    pyautogui.hotkey("ctrl", "R")
+    # pyautogui.moveTo(900,900)
+    # pyautogui.rightClick()
+    # pyautogui.press("down")
+    # pyautogui.press("down")
+    # pyautogui.press("down")
+    # pyautogui.press("enter")
 
 def clickOnStart():
     pyautogui.press("win")
