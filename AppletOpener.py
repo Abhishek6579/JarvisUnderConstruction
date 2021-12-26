@@ -1,79 +1,67 @@
-import time
-import pyautogui
+from pyautogui import typewrite, press, hotkey
+from webbrowser import open
+from time import sleep
 # import pyttsx3
-# from deprecated import deprecated
-pyautogui.FAILSAFE = False
 
 """
--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 Functions
 --------------------------------------------------------------------------
 """
 def refreshWindow():
-    pyautogui.hotkey("ctrl", "R")
-    # pyautogui.moveTo(900,900)
-    # pyautogui.rightClick()
-    # pyautogui.press("down")
-    # pyautogui.press("down")
-    # pyautogui.press("down")
-    # pyautogui.press("enter")
+    hotkey("ctrl", "R")
+    return
 
 def clickOnStart():
-    pyautogui.press("win")
-    time.sleep(0.5)
+    press("win")
+    sleep(0.5)
+    return
 
 def OpenApp(appName):
-    # refreshWindow()
     MinimizeCurrentScreen()
     clickOnStart()
-    pyautogui.typewrite(appName)
-    pyautogui.press("enter")
-    time.sleep(1)
+    typewrite(appName)
+    press("enter")
+    sleep(1)
     # engine = pyttsx3.init('sapi5')
     # voices = engine.getProperty('voices')
     # # print(voices[1].id)
     # engine.setProperty('voice', voices[0].id)
     # pyttsx3.speak((appName+" has been opened"))
     Maximize()
-    time.sleep(1) # Time to perform other background tasks 
+    sleep(1) # Time to perform other background tasks 
     return
 
-def executeChrome(textToSearch):
-    # MinimizeCurrentScreen()
-    OpenApp("Chrome")    
-    pyautogui.typewrite(textToSearch)
-    pyautogui.press("enter")
+def openChrome():
+    textToSearch = input("Enter the text to serch : ")                
+    open(textToSearch) 
+    return
 
-def executeYouTube():
-    textToSearch = input("Enter the text to serch in Youtube: ")
-    MinimizeCurrentScreen()
-    executeChrome("https://www.youtube.com/results?search_query="+textToSearch)
+def openYouTube():
+    textToSearch = input("Enter the text to search : ")
+    open("https://www.youtube.com/results?search_query="+textToSearch)
+    return 
 
-def executeWikipedia():
+def openWikipedia():
     articleToSearch = input("Enter the article to serch in Wikipedia: ")
-    MinimizeCurrentScreen()
-    executeChrome("https://en.m.wikipedia.org/wiki/"+articleToSearch)
-
-
+    open("https://en.m.wikipedia.org/wiki/"+articleToSearch)
+    return
 
 def openAndExecuteCommand():
     cmd = input("Enter the command you want execute :")
-    # MinimizeCurrentScreen()
     OpenApp(app_name)
-    pyautogui.typewrite(cmd)
-    pyautogui.press("enter")
+    typewrite(cmd)
+    press("enter")
+    return
 
 # @deprecated
 def MinimizeCurrentScreen():
-    pyautogui.hotkey("win", "m")
-    # pyautogui.moveTo(1777,27)
-    # # pyautogui.hotkey("win", "down")
-    # pyautogui.click()
-    
+    hotkey("win", "m")
+    return    
 
 def Maximize():
-    time.sleep(0.5)
-    pyautogui.hotkey("win", "up")
+    sleep(0.5)
+    hotkey("win", "up")
     return
 
 if __name__ == "__main__":
@@ -81,13 +69,11 @@ if __name__ == "__main__":
 
     if "command" in app_name or "power" in app_name:
         openAndExecuteCommand()
-    elif "chrome" in app_name:
-        textToSearch = input("Enter the text to serch : ")                
-        executeChrome(textToSearch)
+    elif "chrome" in app_name or "google" in app_name:
+        openChrome()
     elif "youtube" in app_name or "you tube" in app_name:
-        executeYouTube()
+        openYouTube()
     elif "wiki" in app_name:
-        executeWikipedia()
+        openWikipedia()
     else:
-        # MinimizeCurrentScreen()
         OpenApp(app_name)
